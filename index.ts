@@ -8,14 +8,6 @@ const rl = readline.createInterface({
 
 export function fizzbuzz(input : String, params : String[]): String {
 
-    if(process.argv.includes("--debug")) {
-        rl.question('Enter your number: ', (userInput) => {
-           input = userInput;
-           params = process.argv;
-        });
-
-    }
-
     let i :number = Number(input);
     let result : String[] = [];
 
@@ -24,10 +16,6 @@ export function fizzbuzz(input : String, params : String[]): String {
             result.push("Fezz");
         }
         result.push("Bong");
-        if(process.argv.includes("--debug")) {
-            console.log(arrayToString(result));
-            rl.close();
-        }
 
         return arrayToString(result);
     }
@@ -53,11 +41,6 @@ export function fizzbuzz(input : String, params : String[]): String {
     if(result.length == 0)
         result.push(i.toString());
 
-    if(process.argv.includes("--debug")){
-        console.log(arrayToString(result));
-        rl.close();
-    }
-
     return arrayToString(result);
 }
 
@@ -70,5 +53,13 @@ function arrayToString(result :String[]) : String {
 }
 
 
-//
-fizzbuzz("", []);
+function debug() : void {
+    if(process.argv.includes("--debug")) {
+        rl.question('Enter your number: ', (userInput) => {
+            console.log(fizzbuzz(userInput, process.argv));
+            rl.close();
+        });
+    }
+}
+
+debug();
