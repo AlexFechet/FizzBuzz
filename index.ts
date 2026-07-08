@@ -1,17 +1,19 @@
 import process from "process";
 import * as readline from 'readline';
+
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-function fizzbuzz(): void {
+export function fizzbuzz(): void {
 
-    let i :number;
+    rl.question('Enter your number: ', (input) => {
 
-    rl.question('Enter your number: ', (i: number) => {
+        let i :number = Number(input);
         let result : String[] = [];
-        if(i % 11 == 0) {
+
+        if(i % 11 == 0 && process.argv.includes("--11")) {
             if(i % 13 == 0) {
                 result.push("Fezz");
             }
@@ -20,22 +22,22 @@ function fizzbuzz(): void {
             return;
         }
 
-        if(i % 3 == 0)
+        if(i % 3 == 0 && process.argv.includes("--3"))
             result.push("Fizz");
-        if(i % 5 == 0)
+        if(i % 5 == 0 && process.argv.includes("--5"))
             result.push("Buzz");
-        if(i % 7 == 0)
+        if(i % 7 == 0 && process.argv.includes("--7"))
             result.push("Bang");
 
-        if(i % 13 == 0) {
+        if(i % 13 == 0 && process.argv.includes("--13")) {
            for(let j : number = 0; j < result.length; j++) {
-               if(result[j][0] == 'B') {
+               if(result[j]!.at(0) == 'B') {
                    result.splice(j, 0, "Fezz");
                }
            }
         }
 
-        if(i % 17 == 0)
+        if(i % 17 == 0 && process.argv.includes("--17"))
             result.reverse();
 
         if(result.length == 0)
@@ -43,7 +45,7 @@ function fizzbuzz(): void {
 
         arrayToString(result);
 
-        rl.close(); // Always close the interface after reading input
+        rl.close();
     });
 
 
@@ -58,5 +60,5 @@ function arrayToString(result :String[]) : void {
 }
 
 
-
-fizzbuzz();
+//
+// fizzbuzz();
