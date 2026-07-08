@@ -9,7 +9,7 @@ function fizzbuzz(): void {
                 result.push("Fezz");
             }
             result.push("Bong");
-            console.log(result);
+            arrayToString(result);
             continue;
         }
         if(i % 3 == 0) {
@@ -36,16 +36,18 @@ function fizzbuzz(): void {
             result.push(i.toString());
         }
 
-        let resultString = "";
-        for(let j: number = 0; j <result.length; j++) {
-            resultString += result[j];
-        }
-        console.log(resultString);
+        arrayToString(result);
 
     }
     // Put your code here...
 }
 
-function arrayToString(result :String[]) : String
+function arrayToString(result :String[]) : void {
+    let resultString = "";
+    for(let j: number = 0; j <result.length; j++) {
+        resultString += result[j];
+    }
+    console.log(resultString);
+}
 // Now, we run the main function:
 fizzbuzz();
