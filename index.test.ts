@@ -23,3 +23,20 @@ test('fizzbuzz returns "Fizz" for 105', () => {
 test('fizzbuzz returns "Fizz" for 121', () => {
     expect(fizzbuzz("121", ["--3", "--5", "-- 17", "-13", "--7", "--11"])).toBe('Bong');
 });
+
+test('fizzbuzz returns "Fizz" for 605', () => {
+    expect(fizzbuzz("121", ["--3", "--5", "-- 17", "-13", "--7"])).toBe('121');
+});
+
+test('fizzbuzz returns "Fizz" for 605', () => {
+    expect(fizzbuzz("121", ["--3", "--5", "-- 17", "-13", "--7", "--11"])).toBe('Bong');
+});
+
+
+test('fizzbuzz returns "Fizz" for 255', () => {
+    expect(fizzbuzz("255", ["--5", "-- 17"])).toBe('Buzz');
+});
+
+test('fizzbuzz returns "Fizz" for 255', () => {
+    expect(fizzbuzz("255", ["--5", "-- 3"])).toBe('Buzz');
+});
