@@ -12,16 +12,14 @@ export function fizzbuzz(input : String, params : String[]): String {
     let result : String[] = [];
 
     if(i % 11 === 0 && params.includes("--11")) {
-        push_words(i, 13, params, result);
-
+        push_words(i, 13, params, result, "Fezz");
         result.push("Bong");
-
         return arrayToString(result);
     }
 
-    push_words(i, 3, params, result);
-    push_words(i, 5, params, result);
-    push_words(i, 7, params, result);
+    push_words(i, 3, params, result ,"Fizz");
+    push_words(i, 5, params, result , "Buzz");
+    push_words(i, 7, params, result, "Bang");
 
     if(i % 13 === 0 && params.includes("--13")) {
         for(let j : number = 0; j < result.length; j++) {
@@ -40,18 +38,10 @@ export function fizzbuzz(input : String, params : String[]): String {
     return arrayToString(result);
 }
 
-function push_words(input: number, condition : number, params : String[], result : String[]) : String[] {
-    let word = "";
+function push_words(input: number, condition : number, params : String[], result : String[], word : String) : String[] {
     if(input % condition === 0 && params.includes("--" + condition)) {
-        switch (condition) {
-            case 3: word = "Fizz"; break;
-            case 5: word = "Buzz"; break;
-            case 7: word = "Bang"; break;
-            case 11: word = "Bong"; break;
-            case 13: word = "Fezz"; break;
-        }
+        result.push(word);
     }
-    result.push(word);
     return result;
 }
 
