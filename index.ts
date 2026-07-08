@@ -12,20 +12,16 @@ export function fizzbuzz(input : String, params : String[]): String {
     let result : String[] = [];
 
     if(i % 11 === 0 && params.includes("--11")) {
-        if(i % 13 === 0) {
-            result.push("Fezz");
-        }
+        push_words(i, 13, params, result);
+
         result.push("Bong");
 
         return arrayToString(result);
     }
 
-    if(i % 3 === 0 && params.includes("--3"))
-        result.push("Fizz");
-    if(i % 5 === 0 && params.includes("--5"))
-        result.push("Buzz");
-    if(i % 7 === 0 && params.includes("--7"))
-        result.push("Bang");
+    push_words(i, 3, params, result);
+    push_words(i, 5, params, result);
+    push_words(i, 7, params, result);
 
     if(i % 13 === 0 && params.includes("--13")) {
         for(let j : number = 0; j < result.length; j++) {
@@ -42,6 +38,21 @@ export function fizzbuzz(input : String, params : String[]): String {
         result.push(i.toString());
 
     return arrayToString(result);
+}
+
+function push_words(input: number, condition : number, params : String[], result : String[]) : String[] {
+    let word = "";
+    if(input % condition === 0 && params.includes("--" + condition)) {
+        switch (condition) {
+            case 3: word = "Fizz"; break;
+            case 5: word = "Buzz"; break;
+            case 7: word = "Bang"; break;
+            case 11: word = "Bong"; break;
+            case 13: word = "Fezz"; break;
+        }
+    }
+    result.push(word);
+    return result;
 }
 
 function arrayToString(result :String[]) : String {
