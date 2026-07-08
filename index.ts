@@ -1,8 +1,15 @@
-// This is our main function
+import process from "process";
+import * as readline from 'readline';
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
 function fizzbuzz(): void {
 
+    let i :number;
 
-    for(let i: number = 0; i < 100; i++) {
+    rl.question('Enter your number: ', (i: number) => {
         let result : String[] = [];
         if(i % 11 == 0) {
             if(i % 13 == 0) {
@@ -10,17 +17,16 @@ function fizzbuzz(): void {
             }
             result.push("Bong");
             arrayToString(result);
-            continue;
+            return;
         }
-        if(i % 3 == 0) {
+
+        if(i % 3 == 0)
             result.push("Fizz");
-        }
-        if(i % 5 == 0) {
+        if(i % 5 == 0)
             result.push("Buzz");
-        }
-        if(i % 7 == 0) {
+        if(i % 7 == 0)
             result.push("Bang");
-        }
+
         if(i % 13 == 0) {
            for(let j : number = 0; j < result.length; j++) {
                if(result[j][0] == 'B') {
@@ -28,18 +34,19 @@ function fizzbuzz(): void {
                }
            }
         }
-        if(i % 17 == 0) {
-            result.reverse();
-        }
 
-        if(result.length == 0) {
+        if(i % 17 == 0)
+            result.reverse();
+
+        if(result.length == 0)
             result.push(i.toString());
-        }
 
         arrayToString(result);
 
-    }
-    // Put your code here...
+        rl.close(); // Always close the interface after reading input
+    });
+
+
 }
 
 function arrayToString(result :String[]) : void {
@@ -49,5 +56,7 @@ function arrayToString(result :String[]) : void {
     }
     console.log(resultString);
 }
-// Now, we run the main function:
+
+
+
 fizzbuzz();
